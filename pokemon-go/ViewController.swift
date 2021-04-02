@@ -23,8 +23,10 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
+        if let coordinate = locationManager.location?.coordinate{
+            let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+            map.setRegion(region, animated: true)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
